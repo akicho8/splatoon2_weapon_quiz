@@ -53,14 +53,25 @@ if ENV["RUN_REMOTE"]
 else
   desc "ローカルで npm run build してデプロイ先にコピーする"
   after "deploy:updated", :local_build_and_copy_to_remote do
-    tmpdir = "/tmp/__repository_#{fetch(:application)}_#{fetch(:stage)}"
-    system "rm -fr #{tmpdir}"
-    system "git clone #{fetch(:repo_url)} --branch #{fetch(:branch)} #{tmpdir}"
-    system "cd #{tmpdir} && yarn"
-    system "cd #{tmpdir} && yarn run generate"
-    roles(:web).each do |e|
-      system "cd #{tmpdir} && rsync -au --delete -e ssh dist #{e.user}@#{e.hostname}:#{release_path}"
-    end
+    # tmpdir = "/tmp/__repository_#{fetch(:application)}_#{fetch(:stage)}"
     # system "rm -fr #{tmpdir}"
+    # system "git clone #{fetch(:repo_url)} --branch #{fetch(:branch)} #{tmpdir}"
+    # system "cd #{tmpdir} && yarn"
+    # system "cd #{tmpdir} && yarn run generate"
+    # roles(:web).each do |e|
+    #   system "cd #{tmpdir} && rsync -au --delete -e ssh dist #{e.user}@#{e.hostname}:#{release_path}"
+    # end
+    # # system "rm -fr #{tmpdir}"
+
+    Rake::Task[:up].invoke
+  end
+end
+
+# cap production cp
+desc "開発ディレクトリの dist を転送"
+task :up do
+  system "yarn run generate"
+  roles(:web).each do |e|
+    system "rsync -au --delete -e ssh dist #{e.user}@#{e.hostname}:#{release_path}"
   end
 end

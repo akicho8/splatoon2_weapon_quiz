@@ -23,7 +23,7 @@
       ul
         template(v-if="scene2 === 'sm2_running'")
           li.selection.hoverable.sm2_running(v-for="e in current_data.choice_list" :key="e.key" @click.prevent="answerd_data_set(e)")
-            template(v-if="NODE_ENV !== 'production' && current_data.master === e")
+            template(v-if="NODE_ENV !== 'production' && current_data.master === e && !demo")
               | ◎
             span.spla_weapon_font {{hyphen_replace(e.name)}}
         template(v-else)
@@ -47,7 +47,7 @@
       br
       a.button.is-info.is-rounded.tweet_button(:href="twitter_url" target="_blank") ツイート
 
-  template(v-if="NODE_ENV !== 'production'")
+  template(v-if="NODE_ENV !== 'production' && !demo")
     .has-text-white
       ul
         li scene: {{scene}}
@@ -128,13 +128,13 @@ export default {
       ],
 
       meta: [
-        { name: "twitter:card",       content: "summary_large_image",                                                 },
-        { name: "twitter:site",       content: "@splawarabimochi",                                                    },
-        { name: "twitter:creator",    content: "@splawarabimochi",                                                    },
-        { property: "og:url",         content: "http://tk2-221-20341.vs.sakura.ne.jp/sp2quiz",                        },
-        { property: "og:title",       content: "スプラトゥーン2ブキクイズ",                                           },
-        { property: "og:description", content: pkg.description,                                                       },
-        { property: "og:image",       content: require("@/assets/splatoon2_weapon_quiz_large.png"), },
+        { name: "twitter:card",       content: "summary",                                                                                      },
+        { name: "twitter:site",       content: "@splawarabimochi",                                                                             },
+        { name: "twitter:creator",    content: "@splawarabimochi",                                                                             },
+        { property: "og:url",         content: "http://tk2-221-20341.vs.sakura.ne.jp/sp2quiz/",                                                },
+        { property: "og:title",       content: "スプラトゥーン2ブキめいクイズ",                                                                },
+        { property: "og:description", content: pkg.description,                                                                                },
+        { property: "og:image",       content: "http://tk2-221-20341.vs.sakura.ne.jp" + require("@/assets/splatoon2_weapon_quiz_144x144.png"), },
       ],
     }
   },
@@ -144,6 +144,8 @@ export default {
       NODE_ENV: process.env.NODE_ENV,
 
       splatoon2_weapon_list,
+
+      demo: false,
 
       quiz_max: null,
       select_element_max: parseInt(this.$route.query.select_element_max || 3),
@@ -192,6 +194,11 @@ export default {
       this.quiz_max = this.quiz_max || this.splatoon2_weapon_list.length
     } else {
       this.quiz_max = this.quiz_max || 3
+
+      if (this.demo) {
+        this.player_life_max = 10000000
+        this.quiz_life_max_seconds = 10000
+      }
 
       // this.quiz_max = 3
       // this.quiz_max = this.splatoon2_weapon_list.length
@@ -356,7 +363,15 @@ export default {
     },
 
     quiz_list_create() {
-      const items = _.take(_.shuffle(this.splatoon2_weapon_list), this.quiz_max)
+      let items = this.splatoon2_weapon_list
+
+      if (this.demo) {
+      } else {
+        items = _.shuffle(items)
+      }
+
+      items = _.take(items, this.quiz_max)
+
       let rest = null
 
       const quiz_list = []

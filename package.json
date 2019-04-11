@@ -1,7 +1,7 @@
 {
   "name": "splatoon2_weapon_quiz",
   "version": "1.0.0",
-  "description": "スプラトゥーン2のブキ画像を見て名前を当てるだけのアプリ",
+  "description": "ブキ画像を見て名前を当てよう",
   "author": "akicho8",
   "private": true,
   "scripts": {
