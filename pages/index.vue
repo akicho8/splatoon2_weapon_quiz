@@ -103,7 +103,7 @@ import dayjs from "dayjs"
 import _ from 'lodash'
 import pkg from '~/package'
 
-import splatoon2_weapon_list from "./splatoon2_weapon_list.js"
+import splatoon2_weapon_list from "@/assets/splatoon2_weapon_list.js"
 
 import o_mp3 from "@/assets/oto_logic/Quiz-Correct_Answer02-1.mp3"
 import x_mp3 from "@/assets/oto_logic/Quiz-Wrong_Buzzer02-1.mp3"
@@ -131,7 +131,7 @@ export default {
         { name: "twitter:card",       content: "summary_large_image",                                                 },
         { name: "twitter:site",       content: "@splawarabimochi",                                                    },
         { name: "twitter:creator",    content: "@splawarabimochi",                                                    },
-        { property: "og:url",         content: location.href,                                                         },
+        { property: "og:url",         content: "http://tk2-221-20341.vs.sakura.ne.jp/sp2quiz",                        },
         { property: "og:title",       content: "スプラトゥーン2ブキクイズ",                                           },
         { property: "og:description", content: pkg.description,                                                       },
         { property: "og:image",       content: require("@/assets/splatoon2_weapon_quiz_large.png"), },

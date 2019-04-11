@@ -61,6 +61,6 @@ else
     roles(:web).each do |e|
       system "cd #{tmpdir} && rsync -au --delete -e ssh dist #{e.user}@#{e.hostname}:#{release_path}"
     end
-    system "rm -fr #{tmpdir}"
+    # system "rm -fr #{tmpdir}"
   end
 end

@@ -1,7 +1,7 @@
 import pkg from './package'
 
 export default {
-  mode: 'spa',
+  mode: 'universal',                  //   spa or universal
 
   /*
   ** Headers of the page
