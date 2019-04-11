@@ -14,7 +14,7 @@ export default {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
@@ -27,6 +27,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/scss/app.scss',
   ],
 
   /*
@@ -40,7 +41,13 @@ export default {
   */
   modules: [
     // Doc: https://buefy.github.io/#/documentation
-    'nuxt-buefy',
+    // 'nuxt-buefy',
+
+    ['nuxt-buefy', {
+      css: false,
+      // materialDesignIcons: false
+    }],
+
   ],
 
   /*
@@ -51,6 +58,12 @@ export default {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
+      // https://qiita.com/dorarep/items/b9783ea6cd18308a06a0
+      config.module.rules.push({
+        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        use: 'file-loader',
+        exclude: /(node_modules)/,
+      })
     }
   },
 
