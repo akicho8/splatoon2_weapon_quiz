@@ -183,12 +183,6 @@ export default {
   },
 
   created() {
-    // console.debug(this.$meta())
-
-    // this.bg_window_create()
-
-    this.user_scalable_none()
-
     this.quiz_max = this.$route.query.quiz_max
     if (this.NODE_ENV === "production") {
       this.quiz_max = this.quiz_max || this.splatoon2_weapon_list.length
@@ -415,48 +409,6 @@ export default {
     time_format(seconds) {
       return dayjs().startOf("year").set("seconds", seconds).format("m:ss")
     },
-
-    // iOS10のSafariでuser-scalable=no が効かなくズームがされる問題への対策
-    // https://qiita.com/peutes/items/d74e5758a36478fbc039
-    user_scalable_none() {
-      // スクロール禁止 (スマホ用)
-      // https://qiita.com/shge/items/d2ae44621ce2eec183e6
-      // document.addEventListener("touchmove", e => e.preventDefault(), {passive: false})
-
-      // // ダブルタップ禁止 (スマホ用)
-      // // https://qiita.com/peutes/items/d74e5758a36478fbc039#%E3%83%80%E3%83%96%E3%83%AB%E3%82%BF%E3%83%83%E3%83%97%E3%82%92%E9%98%B2%E3%81%90
-      // document.addEventListener('touchend', e => {
-      //   const now = window.performance.now()
-      //   if (now - this.last_touch <= 500) {
-      //     e.preventDefault()
-      //   }
-      //   this.last_touch = now
-      // }, {passive: false})
-
-      // 複数指で拡大縮小が出来てしまうのを防ぐ
-      // https://qiita.com/peutes/items/d74e5758a36478fbc039#%E8%A4%87%E6%95%B0%E6%8C%87%E3%81%A7%E6%8B%A1%E5%A4%A7%E7%B8%AE%E5%B0%8F%E3%81%8C%E5%87%BA%E6%9D%A5%E3%81%A6%E3%81%97%E3%81%BE%E3%81%86%E3%81%AE%E3%82%92%E9%98%B2%E3%81%90
-      // document.addEventListener('touchstart', e => {
-      //   if (e.touches.length > 1) {
-      //     e.preventDefault()
-      //   }
-      // }, {passive: false})
-    },
-
-    // bg_window_create() {
-    //   const app = document.querySelector("#app")
-    //   if (app) {
-    //     const elem = document.createElement("div")
-    //     elem.classList.add("bg_window")
-    //     app.appendChild(elem)
-    //   }
-    // },
-
-    // bg_window_destroy() {
-    //   const elem = document.querySelector(".bg_window")
-    //   if (elem) {
-    //     elem.parentNode.removeChild(elem)
-    //   }
-    // },
   },
 
   computed: {
