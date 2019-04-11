@@ -84,7 +84,7 @@
           tr
             th がぞう
             td
-              a(href="https://twitter.com/splatoonjp" target="_blank") スプラトゥーンこうしきツイッター
+              a(href="https://twitter.com/splatoonjp" target="_blank") スプラトゥーンこうしきツイッターよりはいしゃく
           tr
             th プログラム
             td
@@ -461,7 +461,7 @@ export default {
     },
 
     tweet_body() {
-      return `#${this.current_title}
+      return `#スプラトゥーン2ブキめいクイズ
 正解数: ${this.o_count}
 正解率: ${this.answer_parcentage}
 所要時間: ${this.time_format(this.total_counter / this.accuracy)}
