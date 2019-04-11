@@ -640,9 +640,10 @@ html
       padding-left: 1em
       &.hoverable
         &:hover
-          cursor: pointer
-          border-radius: 1em
-          background: hsla(331, 100%, 0%, 0.1)
+          @media screen and (min-width: $desktop)
+            cursor: pointer
+            border-radius: 1em
+            background: hsla(331, 100%, 0%, 0.1)
       &.selected
         border-radius: 1em
         background: hsla(331, 100%, 0%, 0.2)
@@ -699,12 +700,4 @@ html
       bottom: 0%
       height: 3.2%
       margin: auto
-
-// モバイルのとき選択した部分が次の問題になっても残ってしまう対策
-@media screen and (max-width: $desktop)
-  .splatoon2_weapon_quiz
-    .selection
-      &.hoverable
-        &:hover
-          background: none
 </style>
