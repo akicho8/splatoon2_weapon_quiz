@@ -58,12 +58,13 @@ else
       system "rm -fr #{tmpdir}"
       system "git clone #{fetch(:repo_url)} --branch #{fetch(:branch)} #{tmpdir}"
       within tmpdir do
+        system "yarn"
         system "yarn run generate" # execute で実行すると最後にフリーズするため全部 system でやっている
         roles(:web).each do |e|
           system "rsync -au --delete -e ssh dist #{e.user}@#{e.hostname}:#{release_path}"
         end
       end
-      system "rm -fr #{tmpdir}"
+      # system "rm -fr #{tmpdir}"
     end
   end
 end

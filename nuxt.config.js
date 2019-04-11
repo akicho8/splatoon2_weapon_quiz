@@ -52,5 +52,10 @@ export default {
     */
     extend(config, ctx) {
     }
-  }
+  },
+
+  // サブディレクトリへのデプロイ対応 https://ja.nuxtjs.org/api/configuration-router/
+  router: {
+    base: process.env.NODE_ENV === 'production' ? "/sp2quiz/" : "/",
+  },
 }
