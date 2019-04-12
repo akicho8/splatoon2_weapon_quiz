@@ -128,13 +128,13 @@ export default {
       ],
 
       meta: [
-        { name: "twitter:card",       content: "summary",                                                                                      },
+        { name: "twitter:card",       content: "summary_large_image",                                                                          },
         { name: "twitter:site",       content: "@splawarabimochi",                                                                             },
         { name: "twitter:creator",    content: "@splawarabimochi",                                                                             },
         { property: "og:url",         content: "http://tk2-221-20341.vs.sakura.ne.jp/sp2quiz/",                                                },
         { property: "og:title",       content: "スプラトゥーン2ブキめいクイズ",                                                                },
         { property: "og:description", content: pkg.description,                                                                                },
-        { property: "og:image",       content: "http://tk2-221-20341.vs.sakura.ne.jp" + require("@/assets/splatoon2_weapon_quiz_144x144.png"), },
+        { property: "og:image",       content: "http://tk2-221-20341.vs.sakura.ne.jp" + require("@/assets/splatoon2_weapon_quiz_large.png"),   },
       ],
     }
   },
