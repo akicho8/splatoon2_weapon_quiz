@@ -1,7 +1,7 @@
 {
   "name": "splatoon2_weapon_quiz",
   "version": "1.0.0",
-  "description": "画像を見てブキの名前を当てよう！",
+  "description": "画像を見てブキの名前を答えよう！（そんだけ）",
   "author": "akicho8",
   "private": true,
   "scripts": {

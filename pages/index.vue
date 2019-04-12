@@ -105,16 +105,12 @@ import pkg from '~/package'
 
 import splatoon2_weapon_list from "@/assets/splatoon2_weapon_list.js"
 
-import o_mp3 from "@/assets/oto_logic/Quiz-Correct_Answer02-1.mp3"
-import x_mp3 from "@/assets/oto_logic/Quiz-Wrong_Buzzer02-1.mp3"
-import start_mp3 from "@/assets/oto_logic/Quiz-Question03-1.mp3"
-import all_clear_mp3 from "@/assets/oto_logic/Quiz-Results02-1.mp3"
-
-import game_over_mp3 from "@/assets/oto_logic/Onmtp-Ding05-1.mp3"
-
-import bgm_mp3 from "@/assets/oto_logic/Loop02.mp3"
-// import bgm_mp3 from "@/assets/oto_logic/Loop03.mp3"
-// import bgm_mp3 from "@/assets/oto_logic/dotabatare-su.mp3"
+import mp3_o         from "@/assets/oto_logic/Quiz-Correct_Answer02-1.mp3"
+import mp3_x         from "@/assets/oto_logic/Quiz-Wrong_Buzzer02-1.mp3"
+import mp3_start     from "@/assets/oto_logic/Quiz-Question03-1.mp3"
+import mp3_all_clear from "@/assets/oto_logic/Quiz-Results02-1.mp3"
+import mp3_game_over from "@/assets/oto_logic/Onmtp-Ding05-1.mp3"
+import mp3_bgm       from "@/assets/oto_logic/Loop02.mp3"
 
 export default {
   name: "splatoon2_weapon_quiz",
@@ -270,8 +266,8 @@ export default {
 
       // this.sound_stop()
       this.sound_stop()
-      this.sound_play({src: bgm_mp3, autoplay: true, volume: 0.5, loop: true})
-      this.sound_play({src: start_mp3, autoplay: true, volume: 1.0})
+      this.sound_play({src: mp3_bgm, autoplay: true, volume: 0.5, loop: true})
+      this.sound_play({src: mp3_start, autoplay: true, volume: 1.0})
 
       this.next_quiz_setup()
     },
@@ -293,10 +289,10 @@ export default {
       // e.scrollTop = 0
 
       if (v === "o_count") {
-        this.sound_play({src: o_mp3, autoplay: true, volume: 1.0})
+        this.sound_play({src: mp3_o, autoplay: true, volume: 1.0})
         this.player_life += this.o_life
       } else {
-        this.sound_play({src: x_mp3, autoplay: true, volume: 1.0})
+        this.sound_play({src: mp3_x, autoplay: true, volume: 1.0})
         this.player_life += this.x_life
       }
       this.player_life = _.clamp(this.player_life, 0, this.player_life_max)
@@ -312,7 +308,7 @@ export default {
         if (!this.current_data) {
           this.scene = "sm_all_clear"
           this.sound_stop()
-          this.sound_play({src: all_clear_mp3, autoplay: true, volume: 1.0})
+          this.sound_play({src: mp3_all_clear, autoplay: true, volume: 1.0})
         }
 
         if (this.scene === "sm_running") {
@@ -341,7 +337,7 @@ export default {
         this.player_life = 0
         this.scene = "sm_life_zero"
         this.sound_stop()
-        this.sound_play({src: game_over_mp3, autoplay: true, volume: 1.0})
+        this.sound_play({src: mp3_game_over, autoplay: true, volume: 1.0})
       }
     },
 
